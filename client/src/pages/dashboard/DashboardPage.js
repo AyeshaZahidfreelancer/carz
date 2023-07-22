@@ -18,13 +18,14 @@ import { useSnackbar } from '../../components/snackbar';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 // action
-import { getTotalCarRequest, clearError } from '../../actions/car';
+import { getTotalCarRequest, clearError, clearTotalCars } from '../../actions/car';
 
 function DashboardPage({
   Auth: { isAuthenticated },
   Car: { totalCar, error },
   getTotalCar,
   clrError,
+  clrTotalCars,
 }) {
   const { themeStretch } = useSettingsContext();
   const { enqueueSnackbar } = useSnackbar();
@@ -53,6 +54,12 @@ function DashboardPage({
     }
     // eslint-disable-next-line
   }, [error]);
+
+  useEffect(
+    () => () => clrTotalCars(),
+    // eslint-disable-next-line
+    []
+  );
 
   const sliderRef = useRef();
   const handleNext = () => {
@@ -125,6 +132,7 @@ DashboardPage.propTypes = {
   Car: PropTypes.object.isRequired,
   getTotalCar: PropTypes.func.isRequired,
   clrError: PropTypes.func.isRequired,
+  clrTotalCars: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -135,4 +143,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getTotalCar: getTotalCarRequest,
   clrError: clearError,
+  clrTotalCars: clearTotalCars,
 })(DashboardPage);

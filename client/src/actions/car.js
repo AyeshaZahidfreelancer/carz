@@ -95,6 +95,10 @@ export const clearCarList = () => ({
   type: types.CLEAR_CAR_LIST,
 });
 
+export const clearTotalCars = () => ({
+  type: types.CLEAR_TOTAL_CARS,
+});
+
 export const clearCar = () => ({
   type: types.CLEAR_CAR,
 });

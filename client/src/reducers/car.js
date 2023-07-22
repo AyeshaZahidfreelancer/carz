@@ -64,6 +64,14 @@ export default function car(state = INITIAL_STATE, action) {
         error: null,
       };
     }
+    case types.CLEAR_TOTAL_CARS: {
+      return {
+        ...state,
+        totalCar: null,
+        message: null,
+        error: null,
+      };
+    }
     case types.CLEAR_CAR: {
       return {
         ...state,
